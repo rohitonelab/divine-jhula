@@ -80,7 +80,7 @@ export function Swing({ onBellChime, onGrab, onRelease, reducedMotion }: SwingPr
     });
 
     const pivotWorld = new THREE.Vector3(0, pivotY, 0);
-    const seatWorldY = bbox2.min.y + height * 0.15;
+    const seatWorldY = bbox2.min.y + height * 0.38;
 
     // Rope anchor guesses: symmetric ±0.35m in X around center at pivot
     const anchorSpread = Math.max(0.3, size.x * scale * 0.18);
