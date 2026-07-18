@@ -8,14 +8,18 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+  },
+  // Tell nitro to output in Vercel's native format (.vercel/output).
+  // This only runs during `vite build` — dev server is unaffected.
+  // Override by setting NITRO_PRESET env var if you ever need a different target.
+  nitro: {
+    preset: (process.env.NITRO_PRESET as string | undefined) ?? "vercel",
   },
   vite: {
     server: {
-      host: "0.0.0.0", // bind to IPv4 (IPv6 is not available in this environment)
-      allowedHosts: true, // allow Replit preview proxy domains
+      host: "0.0.0.0",     // bind to IPv4 (no IPv6 in this environment)
+      allowedHosts: true,  // allow Replit preview proxy domains
     },
   },
 });
