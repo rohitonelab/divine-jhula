@@ -2,7 +2,6 @@ import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "rea
 import { Canvas } from "@react-three/fiber";
 import { Environment, ContactShadows, PerspectiveCamera } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
-import { Physics } from "@react-three/rapier";
 import * as THREE from "three";
 import { Sky } from "./Sky";
 import { GlowMotes, Petals } from "./Particles";
@@ -85,14 +84,12 @@ export function JhulanScene({ onStart, started }: Props) {
 
       <Suspense fallback={null}>
         <Environment preset="sunset" background={false} environmentIntensity={0.55} />
-        <Physics gravity={[0, -9.81, 0]} timeStep={1 / 120}>
-          <Swing
-            onBellChime={handleBell}
-            onGrab={handleGrab}
-            onRelease={handleRelease}
-            reducedMotion={reducedMotion}
-          />
-        </Physics>
+        <Swing
+          onBellChime={handleBell}
+          onGrab={handleGrab}
+          onRelease={handleRelease}
+          reducedMotion={reducedMotion}
+        />
       </Suspense>
 
       <ContactShadows position={[0, -1.4, 0]} opacity={0.55} scale={12} blur={2.4} far={5} color="#5A2A10" />
