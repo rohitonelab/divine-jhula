@@ -98,7 +98,7 @@ export function Swing({ onBellChime, onGrab, onRelease, reducedMotion }: SwingPr
 
   // Body is centered at pivotWorld. Its rotation swings back & forth about Z.
   // Content is offset downward inside the body (via the group's negative Y).
-  useRevoluteJoint(anchorRef, seatRef, [
+  useRevoluteJoint(anchorRef as React.RefObject<RapierRigidBody>, seatRef as React.RefObject<RapierRigidBody>, [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 1],
