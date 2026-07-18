@@ -15,6 +15,7 @@ export default defineConfig({
   vite: {
     server: {
       host: "0.0.0.0", // bind to IPv4 (IPv6 is not available in this environment)
+      allowedHosts: true, // allow Replit preview proxy domains
     },
   },
 });
