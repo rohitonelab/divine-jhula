@@ -1,0 +1,135 @@
+You misunderstood the previous implementation. Please refactor the swing system.
+
+IMPORTANT
+
+I now have TWO separate 3D assets.
+
+1. Stand.glb
+2. LadduSittingOnSeat.glb
+
+Do not change these assets.
+
+====================================================
+ASSET STRUCTURE
+====================================================
+
+Stand.glb
+- This is ONLY the wooden/metal stand.
+- It NEVER moves.
+- It is permanently fixed in the scene.
+
+LadduSittingOnSeat.glb
+This model already contains:
+
+- Laddu Gopal
+- Swing Seat
+- Left Chain
+- Right Chain
+
+Laddu Gopal is already sitting on the seat.
+
+DO NOT reposition Krishna.
+DO NOT animate Krishna separately.
+DO NOT detach Krishna from the seat.
+
+Treat LadduSittingOnSeat.glb as ONE moving object.
+
+====================================================
+CURRENT BUG
+====================================================
+
+The current implementation swings LEFT and RIGHT.
+
+THIS IS WRONG.
+
+A real temple Jhulan DOES NOT swing sideways.
+
+It swings FORWARD and BACKWARD only.
+
+====================================================
+CORRECT SWING MOTION
+====================================================
+
+The swing must behave exactly like a real pendulum.
+
+Stand remains completely fixed.
+
+Only LadduSittingOnSeat.glb moves.
+
+The pivot of the moving object is the top suspension point where both chains connect to the stand.
+
+Rotate ONLY around the LOCAL X AXIS.
+
+Never rotate around Y.
+
+Never rotate around Z.
+
+Never rotate the camera.
+
+Never rotate the entire scene.
+
+Never rotate the stand.
+
+====================================================
+INTERACTION
+====================================================
+
+The user can drag the swing with the mouse or touch.
+
+Dragging forward pulls the swing.
+
+Dragging backward pulls the swing.
+
+When released:
+
+- continue moving due to momentum
+- gravity brings it back
+- it passes through the center
+- swings to the opposite side
+- gradually slows because of damping
+
+The motion should look identical to a real Jhulan in a temple.
+
+====================================================
+IMPLEMENTATION
+====================================================
+
+Use whichever method produces the best result:
+
+- Rapier Physics
+OR
+- Custom Pendulum Simulation
+
+I do NOT care which implementation you choose.
+
+I only care that the behavior is physically believable.
+
+====================================================
+VERY IMPORTANT
+====================================================
+
+Before writing any code, inspect the model.
+
+Determine which local axis points from the front of the swing toward the back.
+
+Swing around THAT axis.
+
+Do NOT assume the model is oriented correctly.
+
+If necessary, automatically rotate the imported model once so that the swing moves forward/backward instead of left/right.
+
+The final result must always swing in the forward/backward direction regardless of the original GLB orientation.
+
+====================================================
+SUCCESS CRITERIA
+====================================================
+
+✓ Stand never moves.
+✓ Krishna never receives his own animation.
+✓ Krishna stays seated.
+✓ Entire seat + chains + Krishna move together.
+✓ Motion is only forward/backward.
+✓ No sideways swing.
+✓ Smooth realistic pendulum motion.
+✓ Mobile and desktop dragging both work.
+✓ Production-quality code with comments explaining the swing system.
