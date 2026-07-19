@@ -21,5 +21,14 @@ export default defineConfig({
       host: "0.0.0.0",     // bind to IPv4 (no IPv6 in this environment)
       allowedHosts: true,  // allow Replit preview proxy domains
     },
+    // Bundle @vercel/analytics into the SSR output instead of treating it as
+    // an external — prevents a duplicate-React error ("Invalid hook call") that
+    // appears when the package is loaded as a separate module in the SSR context.
+    ssr: {
+      noExternal: ["@vercel/analytics"],
+    },
+    resolve: {
+      dedupe: ["react", "react-dom"],
+    },
   },
 });
